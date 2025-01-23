@@ -13,8 +13,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Título principal */
@@ -25,13 +25,21 @@
             margin-bottom: 20px;
         }
 
+        .calendar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
         .calendar-container {
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 350px;
-            margin-right: 20px; /* Espacio entre los calendarios */
+            width: 100%;
+            max-width: 400px; /* Ancho máximo para que no crezca demasiado */
         }
 
         .calendar {
@@ -65,15 +73,7 @@
             background-color: transparent;
         }
 
-        .calendar-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        /* Estilos para el modal */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -130,6 +130,36 @@
             to {
                 transform: translateY(0);
                 opacity: 1;
+            }
+        }
+
+        /* Media Queries para móvil */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px; /* Reducir tamaño del título en móviles */
+            }
+
+            .calendar-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .calendar-container {
+                width: 90%; /* Hacer que los calendarios ocupen más espacio en pantallas pequeñas */
+                max-width: none;
+            }
+
+            .days {
+                grid-template-columns: repeat(5, 1fr); /* Mostrar solo 5 días por fila en pantallas pequeñas */
+            }
+        }
+
+        /* Media Queries para pantallas grandes (PC) */
+        @media (min-width: 769px) {
+            .calendar-wrapper {
+                flex-direction: row; /* Mostrar calendarios en fila en pantallas más grandes */
+                gap: 20px;
             }
         }
 
